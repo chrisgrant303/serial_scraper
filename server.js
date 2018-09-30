@@ -40,8 +40,8 @@ app.get("/scrape", function (req, res) {
         // Then, we load that into cheerio and save it to $ for a shorthand selector
         var $ = cheerio.load(response.data);
 
-        // Now, we grab every h2 within an article tag, and do the following:
-        $("h6").each(function (i, element) {
+        // Now, we grab every h1 within an article tag, and do the following:
+        $("h1").each(function (i, element) {
             // Save an empty result object
             var result = {};
 
@@ -52,7 +52,8 @@ app.get("/scrape", function (req, res) {
             result.link = $(this)
                 .children("a")
                 .attr("href");
-
+            result.summary = $("#post_1829398554 > div.item__content.js_item-content.item__content--thumb > div > p")
+                .text();
             // Create a new Article using the `result` object built from scraping
             db.Article.create(result)
                 .then(function (dbArticle) {
