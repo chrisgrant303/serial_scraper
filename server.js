@@ -67,7 +67,7 @@ app.get("/scrape", function (req, res) {
         });
 
         // If we were able to successfully scrape and save an Article, send a message to the client
-        res.send("Scrape Complete");
+        res.send("Scrape Complete, Please press BACK to view your articles");
     });
 });
 
